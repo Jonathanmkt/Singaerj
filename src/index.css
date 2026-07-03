@@ -1,0 +1,252 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ==========================================================
+       DESIGN SYSTEM — SINGAERJ 2.0 · "Deep Forest"
+       Paleta oficial do app Singaerj (app-singaerj/globals.css):
+       #0D6759 (primário) · #329788 (secundário) · #68b6aa
+       (terciário) · #EDEBB9 (creme, texto sobre o primário).
+       Tema premium: camadas de verde-escuro profundo, acento creme,
+       tipografia Sora de alto impacto.
+       ========================================================== */
+
+    /* Escala de profundidade (derivada da primária #006534) */
+    --deep-1: 152 55% 3%;    /* fundo mais profundo               */
+    --deep-2: 152 45% 6%;    /* superfície base                   */
+    --deep-3: 152 38% 9%;    /* cartões                           */
+    --deep-4: 152 32% 13%;   /* bordas suaves / realces           */
+
+    /* Marca */
+    --brand: 151 100% 20%;   /* #006534 verde primário            */
+    --cream: 58 59% 83%;     /* #EDEBB9 creme (contraste quente)  */
+    --emerald: 152 52% 38%;  /* verde médio secundário            */
+    --teal: 153 40% 52%;     /* verde claro terciário             */
+
+    /* Acento neon — mesmo matiz da primária, luz elevada para
+       CTAs e destaques pontuais (uso cirúrgico, não decorativo) */
+    --neon: 154 90% 52%;     /* verde vivo/neon (irmão claro de #006534) */
+
+    /* Papéis semânticos */
+    --background: var(--deep-2);
+    --foreground: 60 30% 97%;
+
+    --card: var(--deep-3);
+    --card-foreground: 60 30% 97%;
+
+    --primary: var(--neon);
+    --primary-foreground: 172 55% 5%;
+
+    --secondary: var(--deep-3);
+    --secondary-foreground: 60 30% 97%;
+
+    --muted: var(--deep-4);
+    --muted-foreground: 165 10% 62%;
+
+    --accent: var(--neon);
+    --accent-foreground: 172 55% 5%;
+
+    --border: 168 20% 14%;
+    --input: 168 20% 14%;
+    --ring: var(--neon);
+
+    --radius: 1rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image:
+      radial-gradient(80% 55% at 50% -10%, hsl(var(--deep-4) / 0.7) 0%, transparent 60%),
+      radial-gradient(60% 45% at 110% 40%, hsl(var(--teal) / 0.08) 0%, transparent 55%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+
+  ::selection {
+    background: hsl(var(--neon));
+    color: hsl(var(--deep-1));
+  }
+
+  /* Scrollbar discreta no tema */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--deep-1));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--deep-4));
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--brand));
+  }
+}
+
+@layer utilities {
+  /* ---------- Tipografia de impacto ---------- */
+
+  .text-gradient-cream {
+    background: linear-gradient(
+      100deg,
+      hsl(var(--neon)) 0%,
+      hsl(var(--teal)) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--neon)) 0%,
+      #fff 45%,
+      hsl(var(--neon)) 80%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3.2s linear infinite;
+  }
+
+  /* ---------- Superfícies premium (contidas, à la SaaS) ---------- */
+
+  .glass {
+    background: hsl(var(--deep-3) / 0.6);
+    border: 1px solid hsl(var(--foreground) / 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glass-strong {
+    background: hsl(var(--deep-1) / 0.8);
+    border: 1px solid hsl(var(--foreground) / 0.07);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+  }
+
+  /* Cartão: borda fina quase invisível, sem degradê chamativo */
+  .border-gradient {
+    background: hsl(var(--deep-3) / 0.6);
+    border: 1px solid hsl(var(--foreground) / 0.07);
+  }
+
+  /* Holofote sutil que segue o mouse (posição via CSS vars --mx/--my) */
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    background: radial-gradient(
+      280px circle at var(--mx, 50%) var(--my, 50%),
+      hsl(var(--neon) / 0.06),
+      transparent 70%
+    );
+  }
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+  .spotlight:hover {
+    border-color: hsl(var(--neon) / 0.25);
+  }
+
+  .glow-cream {
+    box-shadow:
+      0 0 0 1px hsl(var(--neon) / 0.3),
+      0 8px 24px -8px hsl(var(--neon) / 0.4);
+  }
+
+  /* Textura de grão (esconde banding e dá acabamento de filme) */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .hairline {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--neon) / 0.35),
+      transparent
+    );
+  }
+
+  /* Trilho de slider sem barra de rolagem visível */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ---------- Movimento ---------- */
+
+  .lift {
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.4s ease;
+  }
+  .lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px -24px hsl(var(--deep-1) / 0.9);
+  }
+
+  /* Zoom lento cinematográfico do hero */
+  .ken-burns {
+    animation: ken-burns 24s ease-in-out infinite alternate;
+  }
+
+  /* Link com sublinhado que desliza */
+  .link-slide {
+    position: relative;
+  }
+  .link-slide::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 100%;
+    background: hsl(var(--neon));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-slide:hover::after,
+  .link-slide[aria-current="page"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ken-burns {
+      animation: none;
+    }
+  }
+}

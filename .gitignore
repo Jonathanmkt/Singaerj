@@ -1,0 +1,33 @@
+# Dependencias
+node_modules
+dist
+dist-ssr
+*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ==== Credenciais / segredos — NUNCA COMMITAR ====
+ftp.credentials.json
+.env
+.env.local
+.env.*.local
+
+# Config e logs do backend PHP
+php/.env
+php/error-log.txt
