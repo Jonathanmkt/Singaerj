@@ -102,7 +102,8 @@ export function BenefitsSlider() {
       startScroll: node.scrollLeft,
       moved: false,
     };
-    node.setPointerCapture?.(e.pointerId);
+    // NÃO usar setPointerCapture: ele "engole" o clique nos links filhos
+    // (ex.: botão "Agendar"). O arraste funciona via pointermove que borbulha.
   };
 
   const onPointerMove = (e: React.PointerEvent) => {
