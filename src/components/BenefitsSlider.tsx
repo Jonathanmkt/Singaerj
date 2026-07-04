@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { CalendarCheck } from "lucide-react";
 import { SpotlightCard } from "./SpotlightCard";
-import { BENEFICIOS, WHATSAPP_URL } from "@/data/site";
+import { BENEFICIOS } from "@/data/site";
 
 interface CardProps {
   beneficio: (typeof BENEFICIOS)[number];
@@ -34,7 +34,7 @@ function BenefitCard({ beneficio, index, clone }: CardProps) {
               {beneficio.descricao}
             </p>
             <a
-              href={WHATSAPP_URL}
+              href={beneficio.agendarUrl}
               target="_blank"
               rel="noopener noreferrer"
               tabIndex={clone ? -1 : undefined}

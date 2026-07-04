@@ -3,7 +3,7 @@ import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { FaleConosco } from "@/components/FaleConosco";
-import { BENEFICIOS, WHATSAPP_URL } from "@/data/site";
+import { BENEFICIOS } from "@/data/site";
 
 export default function Beneficios() {
   return (
@@ -39,7 +39,7 @@ export default function Beneficios() {
                       {b.descricao}
                     </p>
                     <a
-                      href={WHATSAPP_URL}
+                      href={b.agendarUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="link-slide mt-7 inline-flex w-max items-center gap-2 font-display text-sm font-semibold text-neon"

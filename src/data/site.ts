@@ -5,7 +5,7 @@
 export const WHATSAPP_NUMBER = "552131991949";
 
 /** Monta um link wa.me com mensagem pré-preenchida. */
-const wa = (text: string) =>
+export const wa = (text: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
 // Mensagem genérica (botão flutuante, "Agendar", contato)
@@ -47,6 +47,8 @@ export interface Beneficio {
   titulo: string;
   descricao: string;
   imagem: string;
+  /** Link wa.me com mensagem específica do benefício (botão "Agendar"). */
+  agendarUrl: string;
 }
 
 export const BENEFICIOS: Beneficio[] = [
@@ -54,54 +56,81 @@ export const BENEFICIOS: Beneficio[] = [
     titulo: "Dentista na Sede",
     descricao: "Um consultório completo com diversos serviços gratuitos.",
     imagem: "/images/beneficios/img1.png",
+    agendarUrl: wa(
+      "Olá! Vim pelo site do Singaerj e gostaria de saber mais sobre o agendamento para atendimento odontológico (dentista) na sede."
+    ),
   },
   {
     titulo: "Consultas e Exames",
     descricao:
       "São mais de 20 clínicas em diversos bairros com consultas e exames grátis.",
     imagem: "/images/beneficios/img2.png",
+    agendarUrl: wa(
+      "Olá! Vim pelo site do Singaerj e gostaria de saber mais sobre o agendamento de consultas e exames nas clínicas conveniadas."
+    ),
   },
   {
     titulo: "Sala Multiuso",
     descricao:
       "Uma sala onde diversas especialidades são oferecidas, como oftalmologista, podólogo e muitos outros.",
     imagem: "/images/beneficios/img3.png",
+    agendarUrl: wa(
+      "Olá! Vim pelo site do Singaerj e gostaria de saber mais sobre o agendamento na sala multiuso (oftalmologista, podólogo e outras especialidades)."
+    ),
   },
   {
     titulo: "Assessoria Jurídica",
     descricao:
       "Nossos advogados estão prontos para ajudar nossos associados nas mais diversas áreas do direito.",
     imagem: "/images/beneficios/img4.png",
+    agendarUrl: wa(
+      "Olá! Vim pelo site do Singaerj e gostaria de saber mais sobre o atendimento da assessoria jurídica para associados."
+    ),
   },
   {
     titulo: "Sesi",
     descricao:
       "Associados do Singaerj podem ter sua carteirinha do Sesi e usufruir de inúmeros serviços e benefícios.",
     imagem: "/images/beneficios/sesi.jpg",
+    agendarUrl: wa(
+      "Olá! Vim pelo site do Singaerj e gostaria de saber mais sobre a carteirinha e os benefícios do Sesi."
+    ),
   },
   {
     titulo: "Clube São Cristóvão",
     descricao:
       "Nossos associados têm direito a usar as dependências do São Cristóvão Futebol e Regatas, com direito a quadras esportivas, churrasqueira e salão de festas.",
     imagem: "/images/beneficios/img5.png",
+    agendarUrl: wa(
+      "Olá! Vim pelo site do Singaerj e gostaria de saber mais sobre o acesso ao Clube São Cristóvão (quadras, churrasqueira e salão de festas)."
+    ),
   },
   {
     titulo: "Barbearia na Sede",
     descricao:
       "Nossa barbearia funciona na nossa sede, às terças e quintas, com cortes de cabelo e barba gratuitos.",
     imagem: "/images/beneficios/img6.png",
+    agendarUrl: wa(
+      "Olá! Vim pelo site do Singaerj e gostaria de saber mais sobre o agendamento na barbearia da sede (corte de cabelo e barba)."
+    ),
   },
   {
     titulo: "Nova Sede com 1.500 m²",
     descricao:
       "Um novo espaço com capacidade de atender nossos associados e usuários de maneira eficiente e confortável.",
     imagem: "/images/beneficios/img7.png",
+    agendarUrl: wa(
+      "Olá! Vim pelo site do Singaerj e gostaria de saber mais sobre a nova sede e o atendimento aos associados."
+    ),
   },
   {
     titulo: "Sindicato Itinerante",
     descricao:
       "Adquirimos uma van para estar mais próximo dos nossos guardadores, atendendo e fiscalizando.",
     imagem: "/images/beneficios/img8.png",
+    agendarUrl: wa(
+      "Olá! Vim pelo site do Singaerj e gostaria de saber mais sobre o projeto Sindicato Itinerante."
+    ),
   },
 ];
 
